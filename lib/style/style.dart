@@ -8,7 +8,7 @@ class Style {
   static final Color red = new Color(0xFFFFF0000);
   static final Color palered = new Color(0xFFFF4e53);
   static final Color lightred = new Color(0xFFFF7F81);
-  static final Color mediumorange = new Color(0xFFC81B1C);
+  static final Color mediumred = new Color(0xFFC81B1C);
   static final Color darkindigo = new Color(0xFF07133D);
   static final Color slategrey = new Color(0xFF5D6074);
   static final Color cloudyblue = new Color(0xFFC3C9E0);

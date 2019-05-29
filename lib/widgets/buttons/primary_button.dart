@@ -21,6 +21,11 @@ class PrimaryButton extends StatelessWidget {
           color: Style.oldred,
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(4.0),
+          gradient: new LinearGradient(
+            colors: [Style.mediumred, Style.oldred],
+            begin: Alignment.centerRight,
+            end: new Alignment(-1.0, -1.0)
+          ),
           boxShadow: <BoxShadow> [
             new BoxShadow(
                 color: Style.oldred,
