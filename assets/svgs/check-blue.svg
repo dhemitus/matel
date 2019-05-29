@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="12px" viewBox="0 0 17 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>check</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polyline id="path-1" points="15 0 4.6875 10 0 5.45454545"></polyline>
+    </defs>
+    <g id="Design-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3-Choose-Edition" transform="translate(-111.000000, -448.000000)">
+            <g id="List" transform="translate(104.000000, 430.000000)">
+                <g id="check" transform="translate(0.000000, 8.000000)">
+                    <rect id="bounds" fill-opacity="0.338428442" fill="#1C8FF8" opacity="0" x="0" y="0" width="30" height="30"></rect>
+                    <g stroke-width="1" transform="translate(8.000000, 11.000000)" id="Blue">
+                        <g>
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Mask" stroke="#286EF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="10px" viewBox="0 0 16 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Right #2 Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Design-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7-Setting" transform="translate(-15.000000, -57.000000)" fill="#FFFFFF">
+            <g id="Navbar" transform="translate(0.000000, 40.000000)">
+                <g id="Back" transform="translate(23.000000, 22.000000) scale(-1, 1) translate(-23.000000, -22.000000) translate(15.000000, 14.000000)">
+                    <path d="M12.7533767,8.99925 L10.2721361,11.29425 C9.87693847,11.68525 9.87693847,12.31725 10.2721361,12.70825 C10.6683342,13.09925 11.3096548,13.09925 11.7048524,12.70825 L15.5557779,9.06125 C15.841921,8.77725 16,8.40225 16,8.00025 C16,7.59925 15.841921,7.22225 15.5557779,6.94025 L11.7048524,3.29325 C11.3096548,2.90225 10.6683342,2.90225 10.2721361,3.29325 C9.87693847,3.68325 9.87693847,4.31625 10.2721361,4.70725 L12.7513757,6.99925 L1.00050025,6.99925 C0.448224112,6.99925 0,7.44725 0,7.99925 C0,8.55125 0.448224112,8.99925 1.00050025,8.99925 L12.7533767,8.99925 Z" id="Arrow-Right-#2-Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

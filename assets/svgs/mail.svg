@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="22px" viewBox="0 0 24 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-4.4%" y="-25.0%" width="108.9%" height="150.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.615686275   0 0 0 0 0.639215686   0 0 0 0 0.705882353  0 0 0 0.170091712 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Design-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="8-Sign-Up---Home" transform="translate(-70.000000, -546.000000)" fill="#5D6074">
+            <g id="Login---Action" transform="translate(53.000000, 409.000000)">
+                <g id="Email" filter="url(#filter-1)" transform="translate(0.000000, 122.000000)">
+                    <g id="Icon" transform="translate(21.000000, 16.000000)">
+                        <path d="M13.993,15.0000123 L2.007,15.0000123 C0.901745579,14.9989231 0.00495082946,14.1052561 0,13.0000123 L0,3.00001227 C-3.25635425e-06,2.46836423 0.211671052,1.9585927 0.588259142,1.58331807 C0.964847232,1.20804344 1.47535522,0.998151499 2.007,1.00001227 L13.993,1.00001227 C15.0982544,1.00110148 15.9950492,1.8947684 16,3.00001227 L16,13.0000123 C16.0000033,13.5316603 15.7883289,14.0414318 15.4117409,14.4167065 C15.0351528,14.7919811 14.5246448,15.001873 13.993,15.0000123 L13.993,15.0000123 L13.993,15.0000123 Z M14,13.0000123 L14,4.47101227 L9.055,9.56101227 C8.77362743,9.84283095 8.39173648,10.0011926 7.9935,10.0011926 C7.59526352,10.0011926 7.21337257,9.84283095 6.932,9.56101227 L2,4.48301227 L2,13.0000123 L14,13.0000123 L14,13.0000123 L14,13.0000123 Z M12.629,3.00001227 L3.359,3.00001227 L7.994,7.77901227 L12.629,3.00001227 L12.629,3.00001227 Z" id="Mail-Icon"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
