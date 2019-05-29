@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
-import 'package:flutter_mata_elang/widgets/main_button.dart';
-import 'package:flutter_mata_elang/widgets/primary_button.dart';
-import 'package:flutter_mata_elang/widgets/menu_drawer.dart';
+import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/primary_button.dart';
+import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 
 class DataPage extends StatefulWidget {
 

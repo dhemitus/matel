@@ -19,7 +19,7 @@ class SearchList extends StatelessWidget {
         leading: Text(code, style:Style.subTitle1.copyWith(color: Style.red)),
         title: Row(
           children: <Widget> [
-            Text(name, style:Style.body2.copyWith(color: Style.oldred)),
+            Text('${name.length > 20 ? name.substring(0, 20) : name}...', style:Style.body2.copyWith(color: Style.oldred)),
           ]
         ),
         subtitle: Column(

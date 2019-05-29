@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
-import 'package:flutter_mata_elang/widgets/main_button.dart';
-import 'package:flutter_mata_elang/widgets/text_button.dart';
-import 'package:flutter_mata_elang/widgets/primary_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/text_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/primary_button.dart';
 import 'package:flutter_mata_elang/pages/signup_page.dart';
 import 'package:flutter_mata_elang/pages/search_page.dart';
 
@@ -91,7 +91,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   PrimaryButton(
                     label: 'Login', 
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SearchPage()))
+                    onPressed: (context) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => SearchPage()))
                   ),
                             Container(
                   padding: EdgeInsets.only(top: 20.0),
@@ -102,7 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                       Text('Untuk pendaftar baru: ', style:Style.subTitle1.copyWith(color: Style.slategrey)),
                       TextButton(
                         text: Text('Registrasi', style:Style.button.copyWith(color: Style.oldred)),
-                        onPressed: (context) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => SignUpPage()))
+                        onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUpPage()))
                       ),
                     ]
                   ),

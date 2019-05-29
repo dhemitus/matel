@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
-import 'package:flutter_mata_elang/widgets/main_button.dart';
-import 'package:flutter_mata_elang/widgets/text_button.dart';
-import 'package:flutter_mata_elang/widgets/primary_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/text_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/primary_button.dart';
 import 'package:flutter_mata_elang/pages/signin_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Style.darkindigo,
+                            color: Style.lightred,
                             width: 2.0
                           )
                         )
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       decoration: InputDecoration(
                         labelText: 'Password',
                         labelStyle: Style.body1.copyWith(color: Style.cloudyblue),
-                        suffixIcon: MainButton(icon: STIcon.eye, onPressed: (context) {
+                        suffixIcon: MainButton(icon: _hide ? STIcon.eye : STIcon.redeye, onPressed: (context) {
                           setState(() => _hide = !_hide);
                         }),
                         enabledBorder: UnderlineInputBorder(
@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Style.darkindigo,
+                            color: Style.lightred,
                             width: 2.0
                           )
                         )
@@ -101,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Style.darkindigo,
+                            color: Style.lightred,
                             width: 2.0
                           )
                         )
@@ -122,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Style.darkindigo,
+                            color: Style.lightred,
                             width: 2.0
                           )
                         )

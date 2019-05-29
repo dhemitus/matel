@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_mata_elang/style/style.dart';
-import 'package:flutter_mata_elang/style/icon.dart';
-import 'package:flutter_mata_elang/widgets/text_button.dart';
-import 'package:flutter_mata_elang/widgets/search_list.dart';
-import 'package:flutter_mata_elang/widgets/line_bar.dart';
+import 'package:flutter_mata_elang/widgets/buttons/text_button.dart';
 
 class DetailPage extends StatefulWidget {
 
