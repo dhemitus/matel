@@ -1,6 +1,15 @@
-# flutter_mata_elang
+# GO Matel
 
-Mata Elang Demo App
+GO Matel - Mata elang mobile application
+
+## Kompilasi dan Instalasi
+
+- jalankan: git clone https://github.com/dhemitus/matel.git
+- jalankan: cd matel
+- jalankan: flutter packages get
+- jalankan: flutter build apk
+
+file apk-release.apk akan ada di folder: build/app/outputs/apk/release
 
 ## Getting Started
 
