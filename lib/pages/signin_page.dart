@@ -57,7 +57,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Style.darkindigo,
+                            color: Style.lightred,
                             width: 2.0
                           )
                         )
@@ -72,7 +72,7 @@ class _SignInPageState extends State<SignInPage> {
                       decoration: InputDecoration(
                         labelText: 'Password',
                         labelStyle: Style.body1.copyWith(color: Style.cloudyblue),
-                        suffixIcon: MainButton(icon: STIcon.eye, onPressed: (context) {
+                        suffixIcon: MainButton(icon: _hide ? STIcon.eye : STIcon.redeye, onPressed: (context) {
                           setState(() => _hide = !_hide);
                         }),
                         enabledBorder: UnderlineInputBorder(
@@ -82,7 +82,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                            color: Style.darkindigo,
+                            color: Style.lightred,
                             width: 2.0
                           )
                         )
@@ -102,7 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                       Text('Untuk pendaftar baru: ', style:Style.subTitle1.copyWith(color: Style.slategrey)),
                       TextButton(
                         text: Text('Registrasi', style:Style.button.copyWith(color: Style.oldred)),
-                        onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignUpPage()))
+                        onPressed: (context) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => SignUpPage()))
                       ),
                     ]
                   ),

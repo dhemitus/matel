@@ -11,6 +11,7 @@ class STIcon {
   static final Widget backToTop = new SvgPicture.asset('assets/svgs/back-to-top.svg', semanticsLabel: 'arrow right', color: Style.darkindigo,);
   static final Widget menu = new SvgPicture.asset('assets/svgs/menu.svg', semanticsLabel: 'menu');
   static final Widget eye = new SvgPicture.asset('assets/svgs/eye.svg', semanticsLabel: 'eye', color: Style.cloudyblue,);
+  static final Widget redeye = new SvgPicture.asset('assets/svgs/eye.svg', semanticsLabel: 'redeye', color: Style.lightred,);
   static final Widget rack = new SvgPicture.asset('assets/svgs/rack.svg', semanticsLabel: 'rack', color: Style.cloudyblue,);
   static final Widget bell = new SvgPicture.asset('assets/svgs/bell.svg', semanticsLabel: 'bell', color: Style.cloudyblue,);
   static final Widget image = new SvgPicture.asset('assets/svgs/image.svg', semanticsLabel: 'image', color: Style.cloudyblue,);

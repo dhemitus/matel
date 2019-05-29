@@ -62,7 +62,7 @@ class _SettingPageState extends State<SettingPage> {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Style.darkindigo,
+                          color: Style.lightred,
                           width: 2.0
                         )
                       )
@@ -77,7 +77,7 @@ class _SettingPageState extends State<SettingPage> {
                     decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: Style.body1.copyWith(color: Style.cloudyblue),
-                      suffixIcon: MainButton(icon: STIcon.eye, onPressed: (context) {
+                      suffixIcon: MainButton(icon: _hide ? STIcon.eye : STIcon.redeye, onPressed: (context) {
                         setState(() => _hide = !_hide);
                       }),
                       enabledBorder: UnderlineInputBorder(
@@ -87,7 +87,7 @@ class _SettingPageState extends State<SettingPage> {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Style.darkindigo,
+                          color: Style.lightred,
                           width: 2.0
                         )
                       )
@@ -108,7 +108,7 @@ class _SettingPageState extends State<SettingPage> {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Style.darkindigo,
+                          color: Style.lightred,
                           width: 2.0
                         )
                       )
@@ -129,7 +129,7 @@ class _SettingPageState extends State<SettingPage> {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Style.darkindigo,
+                          color: Style.lightred,
                           width: 2.0
                         )
                       )
@@ -150,7 +150,7 @@ class _SettingPageState extends State<SettingPage> {
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                          color: Style.darkindigo,
+                          color: Style.lightred,
                           width: 2.0
                         )
                       )
