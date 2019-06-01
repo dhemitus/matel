@@ -5,6 +5,8 @@ import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
 import 'package:flutter_mata_elang/widgets/buttons/primary_button.dart';
 import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
+import 'package:flutter_mata_elang/services/service_locator.dart';
+import 'package:flutter_mata_elang/managers/csv_manager.dart';
 
 class DataPage extends StatefulWidget {
 
@@ -49,7 +51,7 @@ class _DataPageState extends State<DataPage> {
                     padding: const EdgeInsets.only(top:20.0, right: 100.0, bottom: 10.0),
                     child: PrimaryButton(
                       label: 'Sinkron Data Anda', 
-                      onPressed: (context) => print('data')
+                      onPressed: (context) => getIt.get<CsvManager>().loadCsv.execute()
                     ),
                   ),
                   Text('Harap selalu update data anda agar mendapat data yang akurat dan up to date', style:Style.body2.copyWith(color: Style.slategrey)),

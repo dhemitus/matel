@@ -21,6 +21,9 @@ dependencies:
   get_it: ^1.0.3+1
   rx_command: ^4.3.1
   sqflite: ^1.1.5
+  flutter_screenutil: ^0.5.2
+  path_provider: ^1.1.0
+  dio: ^2.1.6
 
 dev_dependencies:
   flutter_test:
