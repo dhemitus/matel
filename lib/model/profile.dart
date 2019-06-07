@@ -13,6 +13,7 @@
  */
 
 class Profile {
+  int id;
   final String name;
   final String plate;
   final String vehicle;
@@ -23,8 +24,10 @@ class Profile {
   final String finance;
   final String address;
   final String number;
+  final String note;
 
-  const Profile({this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number});
+  Profile({this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.note});
+  Profile.withId({this.id, this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.note});
 
   Profile.fromList(List<dynamic> list)
     : name = list[0],
@@ -36,7 +39,8 @@ class Profile {
       saldo = list[6].toString(),
       finance = list[7],
       address = list[8].toString(),
-      number = list[9].toString();
+      number = list[9].toString(),
+      note = '';
 
   Map<String, String> toJson() => {
     'name': name,
@@ -49,5 +53,41 @@ class Profile {
     'finance': finance,
     'address': address,
     'number': number,
+    'note': note,
   };
+
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> _map = new Map<String, dynamic>();
+
+    if(id != null) {
+      _map['id'] = id;
+    }
+    _map['name'] = name;
+    _map['plate'] = plate;
+    _map['vehicle'] = vehicle;
+    _map['frame'] = frame;
+    _map['engine'] = engine;
+    _map['ovd'] = ovd;
+    _map['saldo'] = saldo;
+    _map['finance'] = finance;
+    _map['address'] = address;
+    _map['number'] = number;
+    _map['note'] = note;
+
+    return _map;
+  }
+
+  Profile.fromMap(Map<String, dynamic> map) 
+    : id = map['id'],
+      name = map['name'],
+      plate = map['plate'],
+      vehicle = map['vehicle'],
+      frame = map['frame'],
+      engine = map['engine'],
+      ovd = map['ovd'],
+      saldo = map['saldo'],
+      finance = map['finance'],
+      address = map['address'],
+      number = map['number'],
+      note = map['note'];
 }

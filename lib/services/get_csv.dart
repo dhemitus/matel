@@ -10,7 +10,7 @@ class GetCsv {
     Dio _dio = new Dio();
     Response<String> _data = await _dio.get<String>(url);
     List<Profile> _table = CsvToListConverter(eol: '\n').convert(_data.data).map((item) => Profile.fromList(item)).toList();
-    print(_table[1].toJson());
+    print(_table[5000].toMap());
     return _table;
   }
 }

@@ -49,9 +49,19 @@ class _DataPageState extends State<DataPage> {
                   Text('Kami telah melakukan update data pada Kamis, 07 Mei 2019 jam 19.00', style:Style.h6.copyWith(color: Style.red)),
                   Padding(
                     padding: const EdgeInsets.only(top:20.0, right: 100.0, bottom: 10.0),
-                    child: PrimaryButton(
-                      label: 'Sinkron Data Anda', 
-                      onPressed: (context) => getIt.get<CsvManager>().loadCsv.execute()
+                    child: StreamBuilder<bool>(
+                      stream: getIt.get<CsvManager>().switchLoad,
+                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
+                        bool disabled = false;
+                        if(snapshot.hasData) {
+                          disabled = snapshot.data;
+                        }
+                        return PrimaryButton(
+                          label: disabled ? 'Proses sinkronisasi' : 'Sinkron Data Anda', 
+                          onPressed: (context) => getIt.get<CsvManager>().loadCsv.execute(),
+                          disabled: disabled,
+                        );
+                      }
                     ),
                   ),
                   Text('Harap selalu update data anda agar mendapat data yang akurat dan up to date', style:Style.body2.copyWith(color: Style.slategrey)),
