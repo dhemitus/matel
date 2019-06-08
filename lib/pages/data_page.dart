@@ -6,6 +6,7 @@ import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
 import 'package:flutter_mata_elang/widgets/buttons/primary_button.dart';
 import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
+import 'package:flutter_mata_elang/managers/sql_manager.dart';
 import 'package:flutter_mata_elang/managers/csv_manager.dart';
 
 class DataPage extends StatefulWidget {
@@ -50,7 +51,7 @@ class _DataPageState extends State<DataPage> {
                   Padding(
                     padding: const EdgeInsets.only(top:20.0, right: 100.0, bottom: 10.0),
                     child: StreamBuilder<bool>(
-                      stream: getIt.get<CsvManager>().switchLoad,
+                      stream: getIt.get<SqlManager>().switchInsert,
                       builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
                         bool disabled = false;
                         if(snapshot.hasData) {

@@ -24,16 +24,16 @@ class Profile {
   final String finance;
   final String address;
   final String number;
-  final String note;
+  String note;
 
   Profile({this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.note});
   Profile.withId({this.id, this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.note});
 
   Profile.fromList(List<dynamic> list)
     : name = list[0],
-      plate = list[1],
+      plate = list[1].replaceAll('\t', ''),
       vehicle = list[2].toString(),
-      frame = list[3].toString(),
+      frame = list[3].toString().replaceAll(' ', ''),
       engine = list[4].toString(),
       ovd = list[5].toString(),
       saldo = list[6].toString(),

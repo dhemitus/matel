@@ -43,8 +43,11 @@ class DataSql {
       '$finance TEXT, $address TEXT, $number TEXT, $note TEXT)');
   }
 
-  Future<List<dynamic>> insertsCase(List<Profile> profiles) async {
+  Future<List<dynamic>> insertCases(List<Profile> profiles) async {
     Database _db = await database;
+
+    await _db.execute('DELETE FROM $table');
+
     Batch _batch = _db.batch();
 
     for(int _i = 0; _i < profiles.length; _i++) {
@@ -59,6 +62,20 @@ class DataSql {
   Future<int> updateCase(Profile profile) async {
     Database _db = await database;
     int _result = await _db.update(table, profile.toMap(), where: '$id = ?', whereArgs: [profile.id]);
+    return _result;
+  }
+
+  Future<List<dynamic>> searchCases(String data) async {
+    Database _db = await database;
+
+    List<dynamic> _result = await _db.query(table, where: '$plate LIKE ?', whereArgs: ['%$data%']);
+    return _result;
+  }
+
+  Future<List<dynamic>> searchNotes() async {
+    Database _db = await database;
+
+    List<dynamic> _result = await _db.query(table, where: '$note != ?', whereArgs: ['']);
     return _result;
   }
 

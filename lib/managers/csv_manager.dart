@@ -4,6 +4,7 @@ import 'package:rx_command/rx_command_listener.dart';
 import 'package:flutter_mata_elang/services/get_csv.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
 import 'package:flutter_mata_elang/model/profile.dart';
+import 'package:flutter_mata_elang/managers/sql_manager.dart';
 
 class CsvManager {
   RxCommand<void, List<Profile>> loadCsv;
@@ -15,6 +16,7 @@ class CsvManager {
     loadCsv = RxCommand.createAsyncNoParam<List<Profile>>(getIt.get<GetCsv>().load);
     loadCsvListener = RxCommandListener(
       loadCsv,
+      onValue: getIt.get<SqlManager>().insertCases,
       onIsBusyChange: switchLoad
     );
   }

@@ -7,6 +7,9 @@ import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 import 'package:flutter_mata_elang/widgets/lists/search_list.dart';
 import 'package:flutter_mata_elang/pages/detail_page.dart';
 import 'package:virtual_keyboard/virtual_keyboard.dart';
+import 'package:flutter_mata_elang/services/service_locator.dart';
+import 'package:flutter_mata_elang/managers/sql_manager.dart';
+import 'package:flutter_mata_elang/model/profile.dart';
 
 class SearchPage extends StatefulWidget {
 
@@ -36,6 +39,7 @@ class _SearchPageState extends State<SearchPage> {
         default:
       }
     }
+    getIt.get<SqlManager>().searchQuery.execute(_text);
     setState(() {});
   }
 
@@ -72,46 +76,25 @@ class _SearchPageState extends State<SearchPage> {
             ),
             Container(
               height: MediaQuery.of(context).size.height - 375,
-              child: ListView(
-                children: <Widget>[
-                  SearchList(
-                    code: 'B6339FFN',
-                    name: 'Mercedes',
-                    desc: 'Mitsui 8',
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()))
-                  ),
-                  SearchList(
-                    code: 'B1010TOT',
-                    name: 'Toyota Kijang Inova 2.0G A/T 2005',
-                    desc: 'Clipan Nas 5',
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()))
-                  ),
-                  SearchList(
-                    code: 'D1337ROT',
-                    name: 'Toyota Kijang Inova 2.0G A/T 2005',
-                    desc: 'Clipan Nas 5',
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()))
-                  ),
-                  SearchList(
-                    code: 'L123RA',
-                    name: 'Toyota VVTI G 1.3 M/T 2008',
-                    desc: 'MNC Nas 5',
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()))
-                  ),
-                  SearchList(
-                    code: 'B6339FFN',
-                    name: 'Nissan Livina 1.5 (4x2) M/T Merah metalik TH 2000',
-                    desc: 'Andalas Nas 4',
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()))
-                  ),
-                  SearchList(
-                    code: '1003NMA',
-                    name: 'E2 LV 2.5 FF G M/T',
-                    desc: 'OTO WO Nas 4',
-                    onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage()))
-                  ),
-                ]
-              ),
+              child: StreamBuilder<List<dynamic>> (
+                stream: getIt.get<SqlManager>().searchCases,
+                builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
+                  if(snapshot.hasData && snapshot.data.length > 0) {
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Profile _item = Profile.fromMap(snapshot.data[index]);
+                        return SearchList(
+                          profile:_item,
+                          onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage(profile: _item,)))
+                        );
+                      },
+                    );
+                  } else {
+                    return Text('kosong');
+                  }
+                },
+              )
             ),
             Container(
               color: Style.white,
