@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Style {
 
@@ -46,67 +47,67 @@ class Style {
   );
 
   static final h1 = lightTextStyle.copyWith(
-    fontSize: 96,
+    fontSize: ScreenUtil.getInstance().setSp(96),
     letterSpacing: -1.5
   );
 
   static final h2 = lightTextStyle.copyWith(
-    fontSize: 60,
+    fontSize: ScreenUtil.getInstance().setSp(60),
     letterSpacing: -0.5
   );
 
   static final h3 = regularTextStyle.copyWith(
-    fontSize: 48,
+    fontSize: ScreenUtil.getInstance().setSp(48),
     letterSpacing: 0.0
   );
 
   static final h4 = regularTextStyle.copyWith(
-    fontSize: 34,
+    fontSize: ScreenUtil.getInstance().setSp(34),
     letterSpacing: 0.25
   );
 
   static final h5 = regularTextStyle.copyWith(
-    fontSize: 24,
+    fontSize: ScreenUtil.getInstance().setSp(24),
     letterSpacing: 0.0
   );
 
   static final h6 = semiboldTextStyle.copyWith(
-    fontSize: 20,
+    fontSize: ScreenUtil.getInstance().setSp(20),
     letterSpacing: 0.15
   );
 
   static final subTitle1 = regularTextStyle.copyWith(
-    fontSize: 16,
+    fontSize: ScreenUtil.getInstance().setSp(16),
     letterSpacing: 0.15
   );
 
   static final subTitle2 = semiboldTextStyle.copyWith(
-    fontSize: 14,
+    fontSize: ScreenUtil.getInstance().setSp(14),
     letterSpacing: 0.1
   );
 
   static final body1 = regularTextStyle.copyWith(
-      fontSize: 16,
+      fontSize: ScreenUtil.getInstance().setSp(16),
       letterSpacing: 0.5
   );
 
   static final body2 = regularTextStyle.copyWith(
-    fontSize: 14,
+    fontSize: ScreenUtil.getInstance().setSp(14),
     letterSpacing: 0.25
   );
 
   static final button = semiboldTextStyle.copyWith(
-    fontSize: 14,
+    fontSize: ScreenUtil.getInstance().setSp(14),
     letterSpacing: 1.25
   );
 
   static final caption = regularTextStyle.copyWith(
-      fontSize: 12,
+      fontSize: ScreenUtil.getInstance().setSp(12),
       letterSpacing: 0.4
   );
 
   static final overline = regularTextStyle.copyWith(
-      fontSize: 10,
+      fontSize: ScreenUtil.getInstance().setSp(10),
       letterSpacing: 0.5
   );
 

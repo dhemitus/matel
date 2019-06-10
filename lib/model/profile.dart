@@ -31,10 +31,10 @@ class Profile {
 
   Profile.fromList(List<dynamic> list)
     : name = list[0],
-      plate = list[1].replaceAll('\t', ''),
+      plate = list[1].replaceAll(' ', ''),
       vehicle = list[2].toString(),
       frame = list[3].toString().replaceAll(' ', ''),
-      engine = list[4].toString(),
+      engine = list[4].toString().replaceAll(' ', ''),
       ovd = list[5].toString(),
       saldo = list[6].toString(),
       finance = list[7],
@@ -80,10 +80,10 @@ class Profile {
   Profile.fromMap(Map<String, dynamic> map) 
     : id = map['id'],
       name = map['name'],
-      plate = map['plate'],
+      plate = map['plate'].replaceAll(' ', ''),
       vehicle = map['vehicle'],
-      frame = map['frame'],
-      engine = map['engine'],
+      frame = map['frame'].replaceAll(' ', ''),
+      engine = map['engine'].replaceAll(' ', ''),
       ovd = map['ovd'],
       saldo = map['saldo'],
       finance = map['finance'],

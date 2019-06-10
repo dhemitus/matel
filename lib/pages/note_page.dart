@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mata_elang/pages/detail_page.dart';
 
 import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/style/style.dart';
@@ -46,7 +47,6 @@ class _NotePageState extends State<NotePage> {
               ),
             ),
             Container(
-//              padding: EdgeInsets.symmetric(horizontal:6.0,),
               height: MediaQuery.of(context).size.height - 75,
               child: StreamBuilder<List<dynamic>>(
                 stream: getIt.get<SqlManager>().searchNotes,
@@ -59,12 +59,10 @@ class _NotePageState extends State<NotePage> {
                         Profile _item = Profile.fromMap(snapshot.data[index]);
                         return NoteList(
                           profile:_item,
-//                          onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage(profile: _item,)))
                           onPressed: (context) async {
                             print('ola');
                             profile = _item;
-                            final String currentTeam = await _asyncInputDialog(context);
-                            print("Current team name is $currentTeam");
+                            await _asyncInputDialog(context, _item);
                           },
                         );
                       },
@@ -97,7 +95,7 @@ class _NotePageState extends State<NotePage> {
   }
 }
 
-Future _asyncInputDialog(BuildContext context) async {
+Future _asyncInputDialog(BuildContext context, Profile profile) async {
 
   return showDialog (
     context: context,
@@ -105,9 +103,23 @@ Future _asyncInputDialog(BuildContext context) async {
       contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
       children: <Widget>[
         SimpleDialogOption(
-          child: Text('Hapus catatan', style: Style.button.copyWith(color: Style.red),),onPressed: (){Navigator.pop(context);},),
+          child: Text(
+            'Hapus catatan', 
+            style: Style.button.copyWith(color: Style.red),
+            ),
+            onPressed: (){
+              profile.note = '';
+              getIt.get<SqlManager>().deleteNote.execute(profile);
+              Navigator.pop(context);
+            },
+        ),
         SimpleDialogOption(
-          child: Text('Tampilkan Data', style: Style.button.copyWith(color: Style.red),),onPressed: (){Navigator.pop(context);},),
+          child: Text('Tampilkan Data', style: Style.button.copyWith(color: Style.red),),
+            onPressed: (){
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage(profile: profile,)));
+            },
+        ),
         SimpleDialogOption(
           child: Text('Batal', style: Style.button.copyWith(color: Style.red),),onPressed: (){Navigator.pop(context);},),
       ]

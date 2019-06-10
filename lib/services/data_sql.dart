@@ -62,7 +62,15 @@ class DataSql {
   Future<int> updateCase(Profile profile) async {
     Database _db = await database;
     int _result = await _db.update(table, profile.toMap(), where: '$id = ?', whereArgs: [profile.id]);
+    print(_result);
     return _result;
+  }
+
+  Future<Profile> selectCase(Profile profile) async {
+    Database _db = await database;
+
+    List<dynamic> _result = await _db.query(table, where: '$id = ?', whereArgs: [profile.id]);
+    return Profile.fromMap(_result.first);
   }
 
   Future<List<dynamic>> searchCases(String data) async {
