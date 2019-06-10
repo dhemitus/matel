@@ -8,6 +8,7 @@ import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
 import 'package:flutter_mata_elang/managers/sql_manager.dart';
 import 'package:flutter_mata_elang/managers/csv_manager.dart';
+import 'package:flutter_mata_elang/model/process.dart';
 
 class DataPage extends StatefulWidget {
 
@@ -18,6 +19,9 @@ class DataPage extends StatefulWidget {
 }
 
 class _DataPageState extends State<DataPage> {
+  bool disabled = false;
+  bool load;
+  bool insert;
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -47,25 +51,93 @@ class _DataPageState extends State<DataPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Kami telah melakukan update data pada Kamis, 07 Mei 2019 jam 19.00', style:Style.h6.copyWith(color: Style.red)),
+                  Text('Kami telah melakukan update data pada Kamis, 07 Mei 2019 jam 19.00', style:Style.h6.copyWith(color: Style.slategrey)),
                   Padding(
                     padding: const EdgeInsets.only(top:20.0, right: 100.0, bottom: 10.0),
                     child: StreamBuilder<bool>(
-                      stream: getIt.get<SqlManager>().switchInsert,
+                      stream: getIt.get<CsvManager>().switchLoad,
                       builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
-                        bool disabled = false;
                         if(snapshot.hasData) {
-                          disabled = snapshot.data;
+                          load = snapshot.data;
                         }
-                        return PrimaryButton(
-                          label: disabled ? 'Proses sinkronisasi' : 'Sinkron Data Anda', 
-                          onPressed: (context) => getIt.get<CsvManager>().loadCsv.execute(),
-                          disabled: disabled,
+                        return StreamBuilder<bool>(
+                          stream: getIt.get<SqlManager>().switchInsert,
+                          builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
+                            if(snapshot.hasData) {
+                              insert = snapshot.data;
+                            }
+
+                            if(load || insert) {
+                              disabled = true;
+                            } else {
+                              disabled = false;
+                            }
+
+                            if(disabled) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 30.0,
+                                    height: 30.0,
+                                    child: CircularProgressIndicator()
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:10.0),
+                                    child: Text('Proses sinkronisasi data sedang berjalan..\n\nTunggu hingga proses selesai', style:Style.subTitle1.copyWith(color: Style.red)),
+                                  )
+                                ],
+                              );
+                            } else {
+                              return PrimaryButton(
+                                label: disabled ? 'Proses sinkronisasi' : 'Sinkron Data Anda', 
+                                onPressed: (context) {
+//                                  setState(() => disabled = true);
+                                  getIt.get<CsvManager>().loadCsv.execute();
+                                },
+                                disabled: disabled,
+                              );
+
+                            }
+                          }
                         );
                       }
                     ),
                   ),
-                  Text('Harap selalu update data anda agar mendapat data yang akurat dan up to date', style:Style.body2.copyWith(color: Style.slategrey)),
+                  Padding(
+                    padding: const EdgeInsets.only(top:10.0),
+                    child: Text('Harap selalu update data anda agar mendapat data yang akurat dan up to date', style:Style.body2.copyWith(color: Style.slategrey)),
+                  ),
+/*                  Padding(
+                    padding: const EdgeInsets.only(top:80.0),
+                    child: StreamBuilder<bool>(
+                      stream: getIt.get<SqlManager>().switchInsert,
+                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
+                        if(snapshot.hasData) {
+                          if(snapshot.data) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 30.0,
+                                  height: 30.0,
+                                  child: CircularProgressIndicator()
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top:10.0),
+                                  child: Text('Proses download data dan simpan data sedang berjalan..\n Tunggu hingga proses selesai', style:Style.subTitle1.copyWith(color: Style.red)),
+                                )
+                              ],
+                            );
+                          }else {
+                            return Text('Proses selesai', style:Style.subTitle1.copyWith(color: Style.red));
+                          }
+                        } else {
+                          return Container();
+                         }
+                      }
+                    ),
+                  ),*/
                 ]
               ),
             ),
