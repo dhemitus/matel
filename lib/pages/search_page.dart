@@ -4,6 +4,7 @@ import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
 import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
+import 'package:flutter_mata_elang/widgets/keyboard/keyboard.dart';
 import 'package:flutter_mata_elang/widgets/lists/search_list.dart';
 import 'package:flutter_mata_elang/pages/detail_page.dart';
 import 'package:virtual_keyboard/virtual_keyboard.dart';
@@ -24,21 +25,22 @@ class _SearchPageState extends State<SearchPage> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   String _text = '';
 
-  _onKeyPress(VirtualKeyboardKey key) {
-    if (key.keyType == VirtualKeyboardKeyType.String) {
-      _text = _text + key.capsText;
-    } else if (key.keyType == VirtualKeyboardKeyType.Action) {
-      switch (key.action) {
-        case VirtualKeyboardKeyAction.Backspace:
-          if (_text.length == 0) return;
+  onPressed(KeyboardKey key) {
+    print(key);
+    if( key.type == KeyType.text) {
+      _text = _text + key.key.toUpperCase();
+    } else if(key.type == KeyType.symbol) {
+      switch(key.action){
+        case KeyAction.backspace:
           _text = _text.substring(0, _text.length - 1);
           break;
-        case VirtualKeyboardKeyAction.Space:
-          _text = _text + key.text;
+        case KeyAction.delete:
+          _text = '';
           break;
         default:
       }
     }
+
     getIt.get<SqlManager>().searchQuery.execute(_text);
     setState(() {});
   }
@@ -98,11 +100,10 @@ class _SearchPageState extends State<SearchPage> {
             ),
             Container(
               color: Style.white,
-              child: VirtualKeyboard(
-                  height: 300,
-                  textColor: Style.oldred,
-                  type: VirtualKeyboardType.Alphanumeric,
-                  onKeyPress: _onKeyPress),
+              child: SpecialKeyboard(
+                height: 300,
+                onPressed: onPressed,
+              )
             )
           ],
         ),

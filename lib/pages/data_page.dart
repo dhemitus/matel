@@ -8,7 +8,7 @@ import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
 import 'package:flutter_mata_elang/managers/sql_manager.dart';
 import 'package:flutter_mata_elang/managers/csv_manager.dart';
-import 'package:flutter_mata_elang/model/process.dart';
+//import 'package:flutter_mata_elang/model/process.dart';
 
 class DataPage extends StatefulWidget {
 
@@ -20,8 +20,8 @@ class DataPage extends StatefulWidget {
 
 class _DataPageState extends State<DataPage> {
   bool disabled = false;
-  bool load;
-  bool insert;
+  bool load = false;
+  bool insert = false;
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -92,12 +92,10 @@ class _DataPageState extends State<DataPage> {
                               return PrimaryButton(
                                 label: disabled ? 'Proses sinkronisasi' : 'Sinkron Data Anda', 
                                 onPressed: (context) {
-//                                  setState(() => disabled = true);
                                   getIt.get<CsvManager>().loadCsv.execute();
                                 },
                                 disabled: disabled,
                               );
-
                             }
                           }
                         );
@@ -108,36 +106,6 @@ class _DataPageState extends State<DataPage> {
                     padding: const EdgeInsets.only(top:10.0),
                     child: Text('Harap selalu update data anda agar mendapat data yang akurat dan up to date', style:Style.body2.copyWith(color: Style.slategrey)),
                   ),
-/*                  Padding(
-                    padding: const EdgeInsets.only(top:80.0),
-                    child: StreamBuilder<bool>(
-                      stream: getIt.get<SqlManager>().switchInsert,
-                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
-                        if(snapshot.hasData) {
-                          if(snapshot.data) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 30.0,
-                                  height: 30.0,
-                                  child: CircularProgressIndicator()
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top:10.0),
-                                  child: Text('Proses download data dan simpan data sedang berjalan..\n Tunggu hingga proses selesai', style:Style.subTitle1.copyWith(color: Style.red)),
-                                )
-                              ],
-                            );
-                          }else {
-                            return Text('Proses selesai', style:Style.subTitle1.copyWith(color: Style.red));
-                          }
-                        } else {
-                          return Container();
-                         }
-                      }
-                    ),
-                  ),*/
                 ]
               ),
             ),
