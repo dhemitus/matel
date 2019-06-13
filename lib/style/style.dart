@@ -14,7 +14,7 @@ class Style {
   static final Color slategrey = new Color(0xFF5D6074);
   static final Color cloudyblue = new Color(0xFFC3C9E0);
   static final Color greylight = new Color(0xFFEFEFEF);
-//  static final Color verygreylight = new Color(0xFFF5F7F8);
+  static final Color verygreylight = new Color(0xFFF5F7F8);
   static final Color verybluelight = new Color(0xFFF6F9FE);
 
 

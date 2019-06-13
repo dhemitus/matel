@@ -126,7 +126,7 @@ class _SpecialKeyboardState extends State<SpecialKeyboard> {
                   _key = KeyboardKey(key: _keyslist[i][u], type: KeyType.symbol, action: KeyAction.delete);
                 } else {
                   _key = KeyboardKey(key: _keyslist[i][u], type: KeyType.text, action: KeyAction.type);
-                  _child = Text(_keyslist[i][u], style: Style.subTitle1.copyWith(color: Style.red));
+                  _child = Text(_keyslist[i][u], style: Style.h6.copyWith(color: Style.oldred));
                 }
                 return KeyButton(
                   height: widget.height / _keyslist.length,
