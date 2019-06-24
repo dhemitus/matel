@@ -23,6 +23,7 @@ dependencies:
   flutter_screenutil: ^0.5.2
   path_provider: ^1.1.0
   dio: ^2.1.6
+  geolocator: ^5.0.1
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_mata_elang/pages/signin_page.dart';
 import 'package:flutter_mata_elang/managers/cfg_manager.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
+import 'package:flutter_mata_elang/services/loc_data.dart';
 import 'package:flutter_mata_elang/style/style.dart';
 
 class RoutePage extends StatefulWidget {
@@ -21,6 +22,7 @@ class _RoutePageState extends State<RoutePage> {
   void initState() {
 //    getIt<CfgManager>().setFontSize.execute(1.0);
 //    getIt<CfgManager>().setKeySize.execute(1.0);
+    getIt.get<LocData>().getPosition();
     Style.fontSize = 1.0;
     Style.keySize = 1.0;
     super.initState();
