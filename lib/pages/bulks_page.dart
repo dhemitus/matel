@@ -5,26 +5,27 @@ import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
 import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 import 'package:flutter_mata_elang/widgets/keyboard/keyboard.dart';
-import 'package:flutter_mata_elang/widgets/lists/search_list.dart';
-import 'package:flutter_mata_elang/pages/detail_page.dart';
+import 'package:flutter_mata_elang/widgets/lists/bulk_list.dart';
+import 'package:flutter_mata_elang/pages/addbulk_page.dart';
+import 'package:flutter_mata_elang/pages/bulk_page.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
-import 'package:flutter_mata_elang/managers/sql_manager.dart';
+import 'package:flutter_mata_elang/managers/blk_manager.dart';
 import 'package:flutter_mata_elang/model/profile.dart';
 
-class SearchPage extends StatefulWidget {
+class BulksPage extends StatefulWidget {
 
-  SearchPage({Key key}) : super(key: key);
+  BulksPage({Key key}) : super(key: key);
 
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _BulksPageState createState() => _BulksPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _BulksPageState extends State<BulksPage> {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
   String _text = '';
 
-  onPressed(KeyboardKey key) {
+  /*onPressed(KeyboardKey key) {
 
     if( key.type == KeyType.text) {
       _text = _text + key.key.toUpperCase();
@@ -40,13 +41,14 @@ class _SearchPageState extends State<SearchPage> {
       }
     }
 
-    getIt.get<SqlManager>().searchQuery.execute(_text);
+    getIt.get<BlkManager>().searchQuery.execute(_text);
     setState(() {});
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    print(Style.fontSize);
+    getIt.get<BlkManager>().searchQuery.execute(_text);
+
     return Scaffold(
       key: scaffoldKey,
       drawer: Drawer(
@@ -65,30 +67,30 @@ class _SearchPageState extends State<SearchPage> {
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(left: 8.0),
-                  width: MediaQuery.of(context).size.width - 58.0,
+                  width: MediaQuery.of(context).size.width - 106.0,
                   height: 48.0,
-                  decoration: BoxDecoration(
-                    color: Style.greylight,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(4.0),
-                  ),
-                  child: Text(_text, style: Style.h6.copyWith(color: Style.darkindigo),),
+                ),
+                MainButton(
+                  icon: Icon(Icons.add),
+                  onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddBulkPage()))
+//                  onPressed: (context) => scaffoldKey.currentState.openDrawer()
                 ),
               ],
             ),
             Container(
-              height: MediaQuery.of(context).size.height - 375,
+              height: MediaQuery.of(context).size.height - 75,
               child: StreamBuilder<List<dynamic>> (
-                stream: getIt.get<SqlManager>().searchCases,
+                stream: getIt.get<BlkManager>().searchBulks,
                 builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
                   if(snapshot.hasData && snapshot.data.length > 0) {
+//                    return Text('ada ${snapshot.data.length}');
                     return ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
                         Profile _item = Profile.fromMap(snapshot.data[index]);
-                        return SearchList(
+                        return BulkList(
                           profile:_item,
-                          onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DetailPage(profile: _item,)))
+                          onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => BulkPage(profile: _item,)))
                         );
                       },
                     );
@@ -98,13 +100,13 @@ class _SearchPageState extends State<SearchPage> {
                 },
               )
             ),
-            Container(
+/*            Container(
               color: Style.white,
               child: SpecialKeyboard(
                 height: 300,
                 onPressed: onPressed,
               )
-            )
+            )*/
           ],
         ),
       ),

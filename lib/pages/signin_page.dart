@@ -23,6 +23,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     _hide = true;
+
     super.initState();
   }
 

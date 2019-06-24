@@ -24,22 +24,26 @@ class Profile {
   final String finance;
   final String address;
   final String number;
+  final String phone;
+  final String date;
   String note;
 
-  Profile({this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.note});
-  Profile.withId({this.id, this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.note});
+  Profile({this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.phone, this.date, this.note});
+  Profile.withId({this.id, this.name, this.plate, this.vehicle, this.frame, this.engine, this.ovd, this.saldo, this.finance, this.address, this.number, this.phone, this.date, this.note});
 
   Profile.fromList(List<dynamic> list)
     : name = list[0],
-      plate = list[1].replaceAll(' ', ''),
+      plate = (list[1] == null) ? '' : list[1].replaceAll(' ', ''),
       vehicle = list[2].toString(),
-      frame = list[3].toString().replaceAll(' ', ''),
-      engine = list[4].toString().replaceAll(' ', ''),
+      frame = (list[3] == null) ? '' : list[3].toString().replaceAll(' ', ''),
+      engine = (list[4] == null) ? '' : list[4].toString().replaceAll(' ', ''),
       ovd = list[5].toString(),
       saldo = list[6].toString(),
       finance = list[7],
       address = list[8].toString(),
       number = list[9].toString(),
+      phone = '',
+      date = '',
       note = '';
 
   Map<String, String> toJson() => {
@@ -53,6 +57,8 @@ class Profile {
     'finance': finance,
     'address': address,
     'number': number,
+    'phone': phone,
+    'date': date,
     'note': note,
   };
 
@@ -72,6 +78,8 @@ class Profile {
     _map['finance'] = finance;
     _map['address'] = address;
     _map['number'] = number;
+    _map['phone'] = phone;
+    _map['date'] = date;
     _map['note'] = note;
 
     return _map;
@@ -79,15 +87,17 @@ class Profile {
 
   Profile.fromMap(Map<String, dynamic> map) 
     : id = map['id'],
-      name = map['name'],
-      plate = map['plate'].replaceAll(' ', ''),
+      name = (map['name'] == null) ? '' : map['name'],
+      plate = (map['plate'] == null) ? '' : map['plate'].replaceAll(' ', ''),
       vehicle = map['vehicle'],
-      frame = map['frame'].replaceAll(' ', ''),
-      engine = map['engine'].replaceAll(' ', ''),
-      ovd = map['ovd'],
-      saldo = map['saldo'],
-      finance = map['finance'],
-      address = map['address'],
-      number = map['number'],
-      note = map['note'];
+      frame = (map['frame'] == null) ? '' :map['frame'].replaceAll(' ', ''),
+      engine = (map['engine'] == null) ? '' :map['engine'].replaceAll(' ', ''),
+      ovd = (map['ovd'] == null) ? '' : map['ovd'],
+      saldo = (map['saldo'] == null) ? '' : map['saldo'],
+      finance = (map['finance'] == null) ? '' : map['finance'],
+      address = (map['address'] == null) ? '' : map['address'],
+      number = (map['number'] == null) ? '' : map['number'],
+      phone = (map['phone'] == null) ? '' : map['phone'],
+      date = (map['date'] == null) ? '' : map['date'],
+      note = (map['note'] == null) ? '' : map['note'];
 }

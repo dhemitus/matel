@@ -8,7 +8,6 @@ import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
 import 'package:flutter_mata_elang/managers/sql_manager.dart';
 import 'package:flutter_mata_elang/managers/csv_manager.dart';
-//import 'package:flutter_mata_elang/model/process.dart';
 
 class DataPage extends StatefulWidget {
 

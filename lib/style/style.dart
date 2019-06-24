@@ -28,6 +28,9 @@ class Style {
   static final FontWeight reguler = FontWeight.w400;
   static final FontWeight light = FontWeight.w300;
 
+  static double fontSize;
+  static double keySize;
+
   static final regularTextStyle = new TextStyle(
     fontFamily: 'Metropolis',
     color: Colors.white,
@@ -47,68 +50,73 @@ class Style {
   );
 
   static final h1 = lightTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(96),
+    fontSize: ScreenUtil.getInstance().setSp(96) * fontSize,
     letterSpacing: -1.5
   );
 
   static final h2 = lightTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(60),
+    fontSize: ScreenUtil.getInstance().setSp(60) * fontSize,
     letterSpacing: -0.5
   );
 
   static final h3 = regularTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(48),
+    fontSize: ScreenUtil.getInstance().setSp(48) * fontSize,
     letterSpacing: 0.0
   );
 
   static final h4 = regularTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(34),
+    fontSize: ScreenUtil.getInstance().setSp(34) * fontSize,
     letterSpacing: 0.25
   );
 
   static final h5 = regularTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(24),
+    fontSize: ScreenUtil.getInstance().setSp(24) * fontSize,
     letterSpacing: 0.0
   );
 
   static final h6 = semiboldTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(20),
+    fontSize: ScreenUtil.getInstance().setSp(20) * fontSize,
     letterSpacing: 0.15
   );
 
   static final subTitle1 = regularTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(16),
+    fontSize: ScreenUtil.getInstance().setSp(16) * fontSize,
     letterSpacing: 0.15
   );
 
   static final subTitle2 = semiboldTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(14),
+    fontSize: ScreenUtil.getInstance().setSp(14) * fontSize,
     letterSpacing: 0.1
   );
 
   static final body1 = regularTextStyle.copyWith(
-      fontSize: ScreenUtil.getInstance().setSp(16),
+      fontSize: ScreenUtil.getInstance().setSp(16) * fontSize,
       letterSpacing: 0.5
   );
 
   static final body2 = regularTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(14),
+    fontSize: ScreenUtil.getInstance().setSp(14) * fontSize,
     letterSpacing: 0.25
   );
 
   static final button = semiboldTextStyle.copyWith(
-    fontSize: ScreenUtil.getInstance().setSp(14),
+    fontSize: ScreenUtil.getInstance().setSp(14) * fontSize,
     letterSpacing: 1.25
   );
 
   static final caption = regularTextStyle.copyWith(
-      fontSize: ScreenUtil.getInstance().setSp(12),
+      fontSize: ScreenUtil.getInstance().setSp(12) * fontSize,
       letterSpacing: 0.4
   );
 
   static final overline = regularTextStyle.copyWith(
-      fontSize: ScreenUtil.getInstance().setSp(10),
+      fontSize: ScreenUtil.getInstance().setSp(10) * fontSize,
       letterSpacing: 0.5
+  );
+
+  static final key = semiboldTextStyle.copyWith(
+    fontSize: ScreenUtil.getInstance().setSp(20) * keySize,
+    letterSpacing: 0.15
   );
 
   static const Offset top = Offset(0.0, -03.0);

@@ -5,7 +5,8 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class DataSql {
-  final String table= 'case_db';
+  final String table = 'case_db';
+  final String bulk = 'data_db';
   final String id = 'id';
   final String name = 'name';
   final String plate = 'plate';
@@ -18,8 +19,11 @@ class DataSql {
   final String address = 'address';
   final String number = 'number';
   final String note = 'note';
+  final String phone = 'phone';
+  final String date = 'date';
 
   static Database _database;
+  static Database _databulk;
 
   Future<Database> get database async {
     if (_database == null) {
@@ -27,6 +31,14 @@ class DataSql {
     }
 
     return _database;
+  }
+
+  Future<Database> get databulk async {
+    if (_databulk == null) {
+      _databulk = await initBL();
+    }
+
+    return _databulk;
   }
 
   Future<Database> initDB() async {
@@ -37,11 +49,28 @@ class DataSql {
     return _db;
   }
 
+  Future<Database> initBL() async {
+    Directory _directory = await getApplicationDocumentsDirectory();
+    String _path = _directory.path + 'bulk.db';
+
+    Database _db = await openDatabase(_path, version: 1, onCreate:_createBL);
+    return _db;
+  }
+
   void _createDB(Database db, int newVersion) async {
     await db.execute('CREATE TABLE $table($id INTEGER PRIMARY KEY AUTOINCREMENT, $name TEXT, '
       '$plate TEXT, $vehicle TEXT, $frame TEXT, $engine TEXT, $ovd TEXT, $saldo TEXT, '
-      '$finance TEXT, $address TEXT, $number TEXT, $note TEXT)');
+      '$finance TEXT, $address TEXT, $number TEXT, $phone TEXT, $date TEXT, $note TEXT)');
   }
+
+  void _createBL(Database db, int newVersion) async {
+    await db.execute('CREATE TABLE $bulk($id INTEGER PRIMARY KEY AUTOINCREMENT, $name TEXT, '
+      '$plate TEXT, $vehicle TEXT, $frame TEXT, $engine TEXT, $ovd TEXT, $saldo TEXT, '
+      '$finance TEXT, $address TEXT, $number TEXT, $phone TEXT, $date TEXT, $note TEXT)');
+  }
+
+
+
 
   Future<List<dynamic>> insertCases(List<Profile> profiles) async {
     Database _db = await database;
@@ -94,4 +123,42 @@ class DataSql {
     int _result = Sqflite.firstIntValue(_x);
     return _result;
   }
+
+
+
+  Future<List<dynamic>> insertBulks(List<Profile> profiles) async {
+    Database _db = await databulk;
+
+    Batch _batch = _db.batch();
+
+    for(int _i = 0; _i < profiles.length; _i++) {
+      _batch.insert(bulk, profiles[_i].toMap());
+    }
+
+    List<dynamic> _result = await _batch.commit();
+
+    return _result;
+  }
+
+  Future<int> updateBulk(Profile profile) async {
+    Database _db = await databulk;
+    int _result = await _db.update(bulk, profile.toMap(), where: '$id = ?', whereArgs: [profile.id]);
+
+    return _result;
+  }
+
+  Future<Profile> selectBulk(Profile profile) async {
+    Database _db = await databulk;
+
+    List<dynamic> _result = await _db.query(bulk, where: '$id = ?', whereArgs: [profile.id]);
+    return Profile.fromMap(_result.first);
+  }
+
+  Future<List<dynamic>> searchBulks(String data) async {
+    Database _db = await databulk;
+
+    List<dynamic> _result = await _db.query(bulk, where: '$plate LIKE ?', whereArgs: ['%$data%']);
+    return _result;
+  }
+
 }

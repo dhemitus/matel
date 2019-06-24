@@ -16,12 +16,13 @@ class SearchList extends StatelessWidget {
     return ListTile(
         onTap: () => onPressed(context),
         leading: Text(profile.plate, style:Style.subTitle1.copyWith(color: Style.red)),
-        title: Row(
+        title: Text('${profile.vehicle}  -  ${profile.finance}', style:Style.body2.copyWith(color: Style.oldred))
+/*        Row(
           children: <Widget> [
             Text('${profile.name.length > 20 ? profile.name.substring(0, 20) : profile.name}...', style:Style.body2.copyWith(color: Style.oldred)),
           ]
-        ),
-        subtitle: Column(
+        ),*/
+/*        subtitle: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget> [
@@ -31,7 +32,7 @@ class SearchList extends StatelessWidget {
             color: Style.cloudyblue
           )
         ]
-      ),
+        ),*/
     );
   }
 }

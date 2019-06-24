@@ -52,7 +52,6 @@ class _NotePageState extends State<NotePage> {
                 stream: getIt.get<SqlManager>().searchNotes,
                 builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
                   if(snapshot.hasData && snapshot.data.length > 0) {
-//                    return Text(snapshot.data.length.toString());
                     return ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -72,21 +71,6 @@ class _NotePageState extends State<NotePage> {
                   }
                 },
               ),
-/*              child: ListView(
-                children: <Widget>[
-                  NoteList(
-                    code: '1000MJ',
-                    name: 'PTVJ867655vvhg',
-                    number: 'AJ000858',
-                    desc: 'Mercedes hilang',
-                    onPressed: (context) async {
-                      print('ola');
-                      final String currentTeam = await _asyncInputDialog(context);
-                      print("Current team name is $currentTeam");
-                    },
-                  ),
-                ]
-              ),*/
             ),
           ],
         ),
