@@ -102,10 +102,20 @@ class DataSql {
     return Profile.fromMap(_result.first);
   }
 
-  Future<List<dynamic>> searchCases(String data) async {
+  Future<List<dynamic>> searchCases(List<String> data) async {
     Database _db = await database;
 
-    List<dynamic> _result = await _db.query(table, where: '$plate LIKE ?', whereArgs: ['%$data%']);
+    String _que = plate;
+    String _data = data[0];
+    if(data[1] == 'nopol') {
+      _que = plate;
+    } else if(data[1] == 'noka') {
+      _que = frame;
+    } else if(data[1] == 'nosin') {
+      _que = engine;
+    }
+    print('$_que $_data');
+    List<dynamic> _result = await _db.query(table, where: '$_que LIKE ?', whereArgs: ['%$_data%'], orderBy: '${plate} ASC');
     return _result;
   }
 
@@ -157,7 +167,7 @@ class DataSql {
   Future<List<dynamic>> searchBulks(String data) async {
     Database _db = await databulk;
 
-    List<dynamic> _result = await _db.query(bulk, where: '$plate LIKE ?', whereArgs: ['%$data%']);
+    List<dynamic> _result = await _db.query(bulk, where: '$plate LIKE ?', whereArgs: ['%$data%'], orderBy: '${plate} ASC');
     return _result;
   }
 

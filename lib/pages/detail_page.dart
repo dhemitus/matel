@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 import 'package:flutter_mata_elang/managers/sql_manager.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
-import 'package:flutter_mata_elang/widgets/buttons/text_button.dart';
+import 'package:flutter_mata_elang/widgets/buttons/texticon_button.dart';
 import 'package:flutter_mata_elang/model/profile.dart';
 import 'package:flutter_mata_elang/pages/addnote_page.dart';
 
@@ -42,7 +43,7 @@ class DetailPage extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal:10.0,),
-                  height: MediaQuery.of(context).size.height - 119,
+                  height: MediaQuery.of(context).size.height - 139,
                   child: ListView(
                     children: <Widget>[
                       Container(
@@ -94,7 +95,7 @@ class DetailPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
+                      /*Container(
                         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +114,7 @@ class DetailPage extends StatelessWidget {
                             Text(_profile.engine, style:Style.body2.copyWith(color: Style.oldred)),
                           ],
                         ),
-                      ),
+                      ),*/
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                         child: Row(
@@ -152,15 +153,48 @@ class DetailPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      TextButton(
-                        text: Text('Bagikan\nData', textAlign: TextAlign.center, style: Style.button.copyWith(color:Style.oldred),),
+                      TextIconButton(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom:4.0),
+                          child: Icon(Icons.share, color: Style.lightred, size: 18.0,),
+                        ),
+                        text: Text('Bagikan\nData', textAlign: TextAlign.center, style: Style.caption.copyWith(color:Style.oldred),),
+                        onPressed: (context) => Share.share(
+                          'GO-Matel Apps\n'+
+                          'Bantu Pantau\n'+
+                          '----------------------------\n'+
+                          'Nama Pemilik : ${_profile.name}\n'+
+                          'No. Polisi: ${_profile.plate}\n'+
+                          'Mobil : ${_profile.vehicle}\n'+
+                          'Jatuh Tempo \n:'+
+                          'Sisa Hutang : ${_profile.saldo}\n'+
+                          'Leasing : ${_profile.finance} ${_profile.phone}\n'+
+                          'Cabang : \n'+
+                          'Bulan : ${_profile.number}\n'+
+                          '----------------------------'
+                        ),
                       ),
-                      TextButton(
-                        text: Text('Buat\nCatatan', textAlign: TextAlign.center, style: Style.button.copyWith(color:Style.oldred),),
+                      TextIconButton(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom:4.0),
+                          child: Icon(Icons.note_add, color: Style.lightred, size: 18.0,),
+                        ),
+                        text: Text('Buat\nCatatan', textAlign: TextAlign.center, style: Style.caption.copyWith(color:Style.oldred),),
                         onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddnotePage(profile: profile,)))
                       ),
-                      TextButton(
-                        text: Text('Laporkan\nData', textAlign: TextAlign.center, style: Style.button.copyWith(color:Style.oldred),),
+                      TextIconButton(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom:4.0),
+                          child: Icon(Icons.phone, color: Style.lightred, size: 18.0,),
+                        ),
+                        text: Text('Laporkan\nData', textAlign: TextAlign.center, style: Style.caption.copyWith(color:Style.oldred),),
+                      ),
+                      TextIconButton(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom:4.0),
+                          child: Icon(Icons.delete, color: Style.lightred, size:18.0),
+                        ),
+                        text: Text('Hapus\nData', textAlign: TextAlign.center, style: Style.caption.copyWith(color:Style.oldred),),
                       )
                     ],
                   ),

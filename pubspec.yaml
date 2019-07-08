@@ -24,6 +24,9 @@ dependencies:
   path_provider: ^1.1.0
   dio: ^2.1.6
   geolocator: ^5.0.1
+  date_format: ^1.0.6
+  image_picker: ^0.6.0+11
+  imei_plugin: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_mata_elang/widgets/buttons/key_button.dart';
 import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
@@ -23,6 +24,9 @@ class _SearchPageState extends State<SearchPage> {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
   String _text = '';
+  double _height = 375.0;
+  String _option = 'nopol';
+  bool _hide = false;
 
   onPressed(KeyboardKey key) {
 
@@ -36,11 +40,17 @@ class _SearchPageState extends State<SearchPage> {
         case KeyAction.delete:
           _text = '';
           break;
+        case KeyAction.hide:
+          setState(() {
+            _hide = true;
+            _height = 125.0;
+          });
+          break;
         default:
       }
     }
 
-    getIt.get<SqlManager>().searchQuery.execute(_text);
+    getIt.get<SqlManager>().searchQuery.execute([_text, _option]);
     setState(() {});
   }
 
@@ -62,22 +72,44 @@ class _SearchPageState extends State<SearchPage> {
                   icon: STIcon.menu,
                   onPressed: (context) => scaffoldKey.currentState.openDrawer()
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 8.0),
-                  width: MediaQuery.of(context).size.width - 58.0,
-                  height: 48.0,
-                  decoration: BoxDecoration(
-                    color: Style.greylight,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(4.0),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: 8.0),
+//                  width: MediaQuery.of(context).size.width - 58.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      color: Style.greylight,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Text(_text, style: Style.h6.copyWith(color: Style.darkindigo),),
                   ),
-                  child: Text(_text, style: Style.h6.copyWith(color: Style.darkindigo),),
+                ),
+                Container(
+                  width: 90.0,
+                  padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                  child: DropdownButton<String>(
+                    value: _option,
+                    onChanged: (String newValue) {
+                      setState(() {
+                        _option = newValue;
+                      });
+                    },
+                    items: <String>['nopol', 'nosin', 'noka']
+                      .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value, style: Style.button.copyWith(color: Style.darkindigo),),
+                        );
+                      })
+                      .toList(),
+                  ),
                 ),
               ],
             ),
             Container(
-              height: MediaQuery.of(context).size.height - 375,
+              height: MediaQuery.of(context).size.height - _height,
               child: StreamBuilder<List<dynamic>> (
                 stream: getIt.get<SqlManager>().searchCases,
                 builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
@@ -98,6 +130,20 @@ class _SearchPageState extends State<SearchPage> {
                 },
               )
             ),
+            _hide ?
+            Container(
+              alignment: Alignment.centerLeft,
+              child: KeyButton(
+                height: 50.0,
+                width: MediaQuery.of(context).size.width / 10,
+                child: Icon(Icons.keyboard, color: Style.oldred),
+                onPressed: (context) => setState(() {
+                  _hide = false;
+                  _height = 375.0;
+                }),
+              ),
+            )
+            :
             Container(
               color: Style.white,
               child: SpecialKeyboard(

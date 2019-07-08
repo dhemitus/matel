@@ -7,26 +7,26 @@ import 'package:flutter_mata_elang/model/profile.dart';
 
 class SqlManager {
   RxCommand<bool, bool> switchInsert;
-  RxCommand<String, String> searchQuery;
+  RxCommand<List<String>, List<String>> searchQuery;
   RxCommand<List<Profile>, List<dynamic>> insertCases;
   RxCommand<Profile, Profile> selectCase;
-  RxCommand<String, List<dynamic>> searchCases;
+  RxCommand<List<String>, List<dynamic>> searchCases;
   RxCommand<Profile, int> insertNote;
   RxCommand<Profile, int> deleteNote;
   RxCommand<void, List<dynamic>> searchNotes;
   RxCommandListener<List<Profile>, List<dynamic>> insertCasesListener;
   RxCommandListener<Profile, int> deleteNoteListener;
-  RxCommandListener<String, List<dynamic>> searchCasesListener;
-  RxCommandListener<String, String> searchQueryListener;
+  RxCommandListener<List<String>, List<dynamic>> searchCasesListener;
+  RxCommandListener<List<String>, List<String>> searchQueryListener;
 
   SqlManager() {
     switchInsert = RxCommand.createSync<bool, bool>((b) => b);
-    searchQuery = RxCommand.createSync<String, String>((s) => s);
+    searchQuery = RxCommand.createSync<List<String>, List<String>>((s) => s);
     insertCases = RxCommand.createAsync<List<Profile>, List<dynamic>>(getIt.get<DataSql>().insertCases);
     selectCase = RxCommand.createAsync<Profile, Profile>(getIt.get<DataSql>().selectCase);
     insertNote = RxCommand.createAsync<Profile, int>(getIt.get<DataSql>().updateCase);
     deleteNote = RxCommand.createAsync<Profile, int>(getIt.get<DataSql>().updateCase);
-    searchCases = RxCommand.createAsync<String, List<dynamic>>(getIt.get<DataSql>().searchCases);
+    searchCases = RxCommand.createAsync<List<String>, List<dynamic>>(getIt.get<DataSql>().searchCases);
     searchNotes = RxCommand.createAsyncNoParam<List<dynamic>>(getIt.get<DataSql>().searchNotes);
 
     insertCasesListener = RxCommandListener(

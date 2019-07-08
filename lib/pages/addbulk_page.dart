@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_format/date_format.dart';
 
 import 'package:flutter_mata_elang/managers/blk_manager.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
@@ -25,6 +26,7 @@ class _AddBulkPageState extends State<AddBulkPage> {
   String _name;
   String _phone;
   String _date;
+  String _display;
 
   TextEditingController _dataController = new TextEditingController();
   TextEditingController _nameController = new TextEditingController();
@@ -69,7 +71,11 @@ class _AddBulkPageState extends State<AddBulkPage> {
       lastDate: DateTime(2024)
     );
 
-    if(_picked != null) setState(() => _date = _picked.toString());
+    if(_picked != null) setState(() {
+      _display = formatDate(DateTime(_picked.year, _picked.month, _picked.day), [dd, '-', mm, '-', yyyy]);
+      _date = _picked.toString();
+    });
+//    print();
   }
 
   @override
@@ -77,7 +83,8 @@ class _AddBulkPageState extends State<AddBulkPage> {
     _dataController.addListener(_setData);
     _nameController.addListener(_setName);
     _phoneController.addListener(_setPhone);
-//    _dateController.addListener(_setDate);
+    _date = DateTime.now().toString();
+    _display = formatDate(DateTime.now(), [dd, '-', mm, '-', yyyy]);
     super.initState();
   }
 
@@ -173,7 +180,7 @@ class _AddBulkPageState extends State<AddBulkPage> {
                     child: TextButton(
                       text: Container(
                         padding: EdgeInsets.symmetric(vertical: 10.0),
-                        child: Text('Tanggal ', style: Style.body1.copyWith(color: Style.cloudyblue),)
+                        child: Text('Tanggal ' + (_display != null ? ': $_display' : ''), style: Style.body1.copyWith(color: Style.cloudyblue),)
                       ), 
                       onPressed: (context) => _getDate()
                     ),

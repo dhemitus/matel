@@ -15,8 +15,9 @@ class SearchList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
         onTap: () => onPressed(context),
-        leading: Text(profile.plate, style:Style.subTitle1.copyWith(color: Style.red)),
-        title: Text('${profile.vehicle}  -  ${profile.finance}', style:Style.body2.copyWith(color: Style.oldred))
+        leading: Text(profile.plate, style:Style.subTitle1.copyWith(color: Style.oldred)),
+        title: Text('${profile.finance} ${profile.phone} ${profile.number} ${profile.saldo}', style:Style.body2.copyWith(color: Style.darkindigo)),
+        subtitle: Text(profile.vehicle, style:Style.caption.copyWith(color: Style.oldred)),
 /*        Row(
           children: <Widget> [
             Text('${profile.name.length > 20 ? profile.name.substring(0, 20) : profile.name}...', style:Style.body2.copyWith(color: Style.oldred)),
