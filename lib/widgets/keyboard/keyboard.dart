@@ -155,7 +155,7 @@ class SpecialKeyboard extends StatefulWidget {
 }
 
 class _SpecialKeyboardState extends State<SpecialKeyboard> {
-
+  RegExp _numRex = RegExp('[0-9]');
   bool _turn = true;
   List<List<String>> _keys = _keyslist.map((e) => e).toList();
   List<int> _rows = _space.map((e) => e).toList();
@@ -193,20 +193,23 @@ class _SpecialKeyboardState extends State<SpecialKeyboard> {
                 Widget _child;
                 KeyboardKey _key;
                 if(_keys[i][u] == 'BSC') {
-                  _child = Icon(Icons.backspace, color: Style.oldred,);
+                  _child = Icon(Icons.backspace, color: Style.white);
                   _key = KeyboardKey(key: _keys[i][u], type: KeyType.symbol, action: KeyAction.backspace);
                 } else if(_keys[i][u] == 'DEL'){
-                  _child = Icon(Icons.cancel, color: Style.oldred);
+                  _child = Icon(Icons.cancel, color: Style.white);
                   _key = KeyboardKey(key: _keys[i][u], type: KeyType.symbol, action: KeyAction.delete);
                 } else if(_keys[i][u] == 'KEY'){
-                  _child = Icon(Icons.keyboard, color: Style.oldred);
+                  _child = Icon(Icons.keyboard, color: Style.white);
                   _key = KeyboardKey(key: _keys[i][u], type: KeyType.symbol, action: KeyAction.hide);
                 } else if(_keys[i][u] == 'SWC'){
-                  _child = Icon(Icons.rotate_90_degrees_ccw, color: Style.oldred);
+                  _child = Icon(Icons.rotate_90_degrees_ccw, color: Style.white);
                   _key = KeyboardKey(key: _keys[i][u], type: KeyType.symbol, action: KeyAction.rotate);
                 } else {
                   _key = KeyboardKey(key: _keys[i][u], type: KeyType.text, action: KeyAction.type);
-                  _child = Text(_keys[i][u].toUpperCase(), style: Style.key.copyWith(color: Style.oldred));
+                  _numRex.hasMatch(_keys[i][u]) ?
+                  _child = Text(_keys[i][u].toUpperCase(), style: Style.key.copyWith(color: Style.darkindigo))
+                  :
+                  _child = Text(_keys[i][u].toUpperCase(), style: Style.key.copyWith(color: Style.white));
                 }
                 if(_keys[i][u] == 'KEY') {
                   return Expanded(

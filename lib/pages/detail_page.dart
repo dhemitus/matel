@@ -3,6 +3,7 @@ import 'package:share/share.dart';
 
 import 'package:flutter_mata_elang/managers/sql_manager.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
+import 'package:flutter_mata_elang/services/loc_data.dart';
 import 'package:flutter_mata_elang/style/icon.dart';
 import 'package:flutter_mata_elang/style/style.dart';
 import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
@@ -10,14 +11,25 @@ import 'package:flutter_mata_elang/widgets/buttons/texticon_button.dart';
 import 'package:flutter_mata_elang/model/profile.dart';
 import 'package:flutter_mata_elang/pages/addnote_page.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final Profile profile;
 
   DetailPage({Key key, this.profile}) : super(key: key);
 
   @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+
+  _DetailPageState() {
+//    getIt.get<LocData>().setPosition(widget.profile.plate);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    getIt.get<SqlManager>().selectCase.execute(profile);
+    getIt.get<LocData>().setPosition(widget.profile.plate);
+    getIt.get<SqlManager>().selectCase.execute(widget.profile);
 
     return Scaffold(
       body: Padding(
@@ -25,7 +37,7 @@ class DetailPage extends StatelessWidget {
         child: StreamBuilder<Profile>(
           stream: getIt.get<SqlManager>().selectCase,
           builder: (BuildContext context, AsyncSnapshot<Profile> snapshot) {
-            Profile _profile = profile;
+            Profile _profile = widget.profile;
 
             if(snapshot.hasData) {
               _profile = snapshot.data;
@@ -180,7 +192,7 @@ class DetailPage extends StatelessWidget {
                           child: Icon(Icons.note_add, color: Style.lightred, size: 18.0,),
                         ),
                         text: Text('Buat\nCatatan', textAlign: TextAlign.center, style: Style.caption.copyWith(color:Style.oldred),),
-                        onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddnotePage(profile: profile,)))
+                        onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddnotePage(profile: widget.profile,)))
                       ),
                       TextIconButton(
                         icon: Padding(

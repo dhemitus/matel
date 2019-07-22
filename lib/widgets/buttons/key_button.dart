@@ -26,20 +26,20 @@ class KeyButton extends StatelessWidget {
           alignment: Alignment.center,
           child: child,
           decoration: BoxDecoration(
-            color: Style.verygreylight,
+            color: Style.lightred,
             shape: BoxShape.rectangle,
             border: Border.all(
               width: 1.0,
-              color: Style.greylight
+              color: Style.oldred
             ),
             borderRadius: BorderRadius.all(
               Radius.circular(4.0)
             ),
             boxShadow: <BoxShadow> [
               new BoxShadow(
-                  color: Style.greylight,
-                  blurRadius: 08.0,
-                  offset: new Offset(0.0, 03.0)
+                  color: Style.oldred.withOpacity(0.7),
+                  blurRadius: 05.0,
+                  offset: new Offset(0.0, 04.0)
               )
             ]
           )

@@ -136,7 +136,7 @@ class _SearchPageState extends State<SearchPage> {
               child: KeyButton(
                 height: 50.0,
                 width: MediaQuery.of(context).size.width / 10,
-                child: Icon(Icons.keyboard, color: Style.oldred),
+                child: Icon(Icons.keyboard, color: Style.white),
                 onPressed: (context) => setState(() {
                   _hide = false;
                   _height = 375.0;

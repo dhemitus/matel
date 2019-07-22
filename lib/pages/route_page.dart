@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_mata_elang/pages/signin_page.dart';
 import 'package:flutter_mata_elang/managers/cfg_manager.dart';
+import 'package:flutter_mata_elang/managers/auth_manager.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
-import 'package:flutter_mata_elang/services/loc_data.dart';
 import 'package:flutter_mata_elang/style/style.dart';
 
 class RoutePage extends StatefulWidget {
@@ -22,9 +22,11 @@ class _RoutePageState extends State<RoutePage> {
   void initState() {
 //    getIt<CfgManager>().setFontSize.execute(1.0);
 //    getIt<CfgManager>().setKeySize.execute(1.0);
-    getIt.get<LocData>().getPosition();
     Style.fontSize = 1.0;
     Style.keySize = 1.0;
+    getIt<CfgManager>().getFontSize.execute();
+    getIt<CfgManager>().getKeySize.execute();
+    getIt<AuthManager>().logSession.execute();
     super.initState();
   }
 
@@ -38,8 +40,6 @@ class _RoutePageState extends State<RoutePage> {
 
   @override
   Widget build(BuildContext context) {
-    getIt<CfgManager>().getFontSize.execute();
-    getIt<CfgManager>().getKeySize.execute();
 
     return FutureBuilder(
       future: _notZero(Stream<double>.periodic(Duration(milliseconds: 50), (x) => MediaQuery.of(context).size.width)
@@ -54,21 +54,31 @@ class _RoutePageState extends State<RoutePage> {
                 Style.fontSize = snapshot.data;
                 print(Style.fontSize);
               }
-            return StreamBuilder<double>(
-              stream: getIt<CfgManager>().getKeySize,
-              builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
-                if(snapshot.hasData) {
-                  Style.keySize = snapshot.data;
-                  print(Style.fontSize);
+              return StreamBuilder<double>(
+                stream: getIt<CfgManager>().getKeySize,
+                builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
+                  if(snapshot.hasData) {
+                    Style.keySize = snapshot.data;
+  //                  print(Style.fontSize);
+                  }
+                  return SignInPage();
                 }
-                return SignInPage();
-              }
-            );
+              );
             }
           );
         } else {
           print('null media');
-          return Container(color: Colors.white);
+          return StreamBuilder<List<String>>(
+            stream: getIt<AuthManager>().logSession,
+            initialData: null,
+            builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+              if(snapshot.hasData) {
+                print(snapshot.data);
+              }
+              print(snapshot);
+              return Container(color: Colors.white);
+            }
+          );
         }
       }
     );

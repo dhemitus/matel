@@ -15,6 +15,7 @@ class STIcon {
   static final Widget rack = new SvgPicture.asset('assets/svgs/rack.svg', semanticsLabel: 'rack', color: Style.cloudyblue,);
   static final Widget bell = new SvgPicture.asset('assets/svgs/bell.svg', semanticsLabel: 'bell', color: Style.cloudyblue,);
   static final Widget image = new SvgPicture.asset('assets/svgs/image.svg', semanticsLabel: 'image', color: Style.cloudyblue,);
+  static final Widget redimage = new SvgPicture.asset('assets/svgs/image.svg', semanticsLabel: 'image', color: Style.lightred,);
   static final Widget moon = new SvgPicture.asset('assets/svgs/moon.svg', semanticsLabel: 'moon', color: Style.cloudyblue,);
   static final Widget sun = new SvgPicture.asset('assets/svgs/sun.svg', semanticsLabel: 'sun', color: Style.cloudyblue,);
   static final Widget phone = new SvgPicture.asset('assets/svgs/phone.svg', semanticsLabel: 'phone',);
