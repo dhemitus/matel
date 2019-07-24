@@ -50,6 +50,8 @@ class _SearchPageState extends State<SearchPage> {
       }
     }
 
+    (_text.isEmpty) ? print('text kosong') : print('textisi');
+
     getIt.get<SqlManager>().searchQuery.execute([_text, _option]);
     setState(() {});
   }
@@ -113,7 +115,8 @@ class _SearchPageState extends State<SearchPage> {
               child: StreamBuilder<List<dynamic>> (
                 stream: getIt.get<SqlManager>().searchCases,
                 builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot){
-                  if(snapshot.hasData && snapshot.data.length > 0) {
+                  print(snapshot);
+                  if(snapshot.hasData && snapshot.data.length > 0 && _text.isNotEmpty) {
                     return ListView.builder(
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {

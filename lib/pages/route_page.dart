@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_mata_elang/pages/signin_page.dart';
+import 'package:flutter_mata_elang/pages/search_page.dart';
 import 'package:flutter_mata_elang/managers/cfg_manager.dart';
 import 'package:flutter_mata_elang/managers/auth_manager.dart';
 import 'package:flutter_mata_elang/services/service_locator.dart';
@@ -17,6 +18,9 @@ class RoutePage extends StatefulWidget {
 }
 
 class _RoutePageState extends State<RoutePage> {
+
+  Widget _child;
+
 
   @override
   void initState() {
@@ -41,6 +45,14 @@ class _RoutePageState extends State<RoutePage> {
   @override
   Widget build(BuildContext context) {
 
+    getIt<AuthManager>().logSession.listen((list) {
+      if(list != null && list.length > 0) {
+        _child = SearchPage();
+      } else {
+        _child = SignInPage();
+      }
+    });
+
     return FutureBuilder(
       future: _notZero(Stream<double>.periodic(Duration(milliseconds: 50), (x) => MediaQuery.of(context).size.width)
       ),
@@ -61,7 +73,7 @@ class _RoutePageState extends State<RoutePage> {
                     Style.keySize = snapshot.data;
   //                  print(Style.fontSize);
                   }
-                  return SignInPage();
+                  return _child;
                 }
               );
             }
@@ -74,9 +86,11 @@ class _RoutePageState extends State<RoutePage> {
             builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
               if(snapshot.hasData) {
                 print(snapshot.data);
+                return Container(color: Colors.white);
+              } else {
+                print(snapshot);
+                return Container(color: Colors.white);
               }
-              print(snapshot);
-              return Container(color: Colors.white);
             }
           );
         }

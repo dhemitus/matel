@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       _foto = await ImagePicker.pickImage(source: ImageSource.camera);
       List<int> _fotobyte = await _foto.readAsBytes();
-      _fotoselfi = base64Encode(_fotobyte);
+      _fotoselfi = 'data:image/jpeg;base64,' + base64Encode(_fotobyte);
       print(_fotoselfi);
       setState(() {});
     } catch (e) {
@@ -88,9 +88,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void _pickKtp() async {
     try {
-      _foto = await ImagePicker.pickImage(source: ImageSource.gallery);
+      _foto = await ImagePicker.pickImage(source: ImageSource.camera);
       List<int> _fotobyte = await _foto.readAsBytes();
-      _fotoktp = base64Encode(_fotobyte);
+      _fotoktp = 'data:image/jpeg;base64,' + base64Encode(_fotobyte);
       print(_fotoktp);
       setState(() {});
     } catch (e) {

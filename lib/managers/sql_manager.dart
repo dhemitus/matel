@@ -48,7 +48,7 @@ class SqlManager {
     searchQueryListener = RxCommandListener(
       searchQuery,
       debounceDuration: Duration(milliseconds: 500),
-      onValue: (val) => (val.isEmpty) ? print('empty query') : searchCases.execute(val)
+      onValue: (val) => (val[0].isEmpty) ? print('empty query') : searchCases.execute(val)
     );
   }
 }

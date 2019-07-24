@@ -10,6 +10,7 @@ class AuthManager {
   RxCommand<User, http.Response> signin;
   RxCommand<String, bool> signinLog;
   RxCommand<void, List<String>> logSession;
+  RxCommand<void, bool> delSession;
   RxCommandListener<User, http.Response> signinListener;
   RxCommandListener<dynamic, bool> logListener;
   RxCommand<bool, bool> switchLoad;
@@ -23,6 +24,7 @@ class AuthManager {
     signin = RxCommand.createAsync<User, http.Response>(getIt.get<GetAuth>().signin);
     signinLog = RxCommand.createAsync<String, bool>(getIt.get<GetAuth>().setLog);
     logSession = RxCommand.createAsyncNoParam<List<String>>(getIt.get<GetAuth>().getLog);
+    delSession = RxCommand.createAsyncNoParam<bool>(getIt.get<GetAuth>().delLog);
 
     signinListener = RxCommandListener(
       signin,
@@ -35,7 +37,7 @@ class AuthManager {
       onIsBusyChange: switchLoad
     );
 
-    logSession.listen((list) => print(list));
+//    logSession.listen((list) => print(list));
 
     logListener = RxCommandListener(
       signinLog,

@@ -6,6 +6,9 @@ import 'package:flutter_mata_elang/widgets/buttons/main_button.dart';
 import 'package:flutter_mata_elang/widgets/buttons/primary_button.dart';
 import 'package:flutter_mata_elang/pages/signin_page.dart';
 import 'package:flutter_mata_elang/widgets/menus/menu_drawer.dart';
+import 'package:flutter_mata_elang/managers/auth_manager.dart';
+import 'package:flutter_mata_elang/model/user.dart';
+import 'package:flutter_mata_elang/services/service_locator.dart';
 
 class SignOutPage extends StatefulWidget {
 
@@ -49,9 +52,19 @@ class _SignOutPageState extends State<SignOutPage> {
                   Text('Anda boleh keluar dari akun jika ingin menggunakan akun anda di HP lain\n\nSebelum login di HP yang baru silakan klik tombol logout dulu agar HP anda bisa menggunakan akun anda.', style:Style.body2.copyWith(color: Style.slategrey)),
                   Padding(
                     padding: const EdgeInsets.only(top:20.0, right: 100.0),
-                    child: PrimaryButton(
-                      label: 'Logout Akun', 
-                      onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignInPage()))
+                    child: StreamBuilder<bool>(
+                      stream: getIt.get<AuthManager>().delSession,
+                      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                        print(snapshot);
+                        if(snapshot.hasData && snapshot.data) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => SignInPage())));
+                        }
+                        return PrimaryButton(
+                          label: 'Logout Akun', 
+//                          onPressed: (context) => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SignInPage()))
+                          onPressed: (context) => getIt.get<AuthManager>().delSession.execute(),
+                        );
+                      }
                     ),
                   ),
                 ]

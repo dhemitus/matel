@@ -45,11 +45,18 @@ class GetAuth {
     return _storage.setStringList('logs', _list);
   }
 
-  Future<List<String>> getLog() async {
+  Future<bool> delLog() async {
     SharedPreferences _storage = await SharedPreferences.getInstance();
-    List<String> value = _storage.getStringList('logs');
-
-    return value;
+    return _storage.setStringList('logs', null);
   }
 
+  Future<List<String>> getLog() async {
+    try {
+      SharedPreferences _storage = await SharedPreferences.getInstance();
+      return _storage.getStringList('logs') ?? null;
+
+    } catch (e) {
+      return null;
+    }
+  }
 }
