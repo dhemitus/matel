@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "7008090374",
+    "firebase_url": "https://gomatel.firebaseio.com",
+    "project_id": "gomatel",
+    "storage_bucket": "gomatel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7008090374:android:cdb1199adca5b09c",
+        "android_client_info": {
+          "package_name": "com.mobil.gomatel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "7008090374-ijn9o7kegeacadf84bnf3cucpceomfeu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC74_yFdPZHnpyaSmyC2cQLTSn9KD_6qrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "7008090374-ijn9o7kegeacadf84bnf3cucpceomfeu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

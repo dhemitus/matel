@@ -104,6 +104,7 @@ class DataSql {
 
   Future<List<dynamic>> searchCases(List<String> data) async {
     Database _db = await database;
+    Database _dk = await databulk;
 
     String _que = plate;
     String _data = data[0];
@@ -116,7 +117,8 @@ class DataSql {
     }
     print('$_que $_data');
     List<dynamic> _result = await _db.query(table, where: '$_que LIKE ?', whereArgs: ['%$_data%'], orderBy: '${plate} ASC');
-    return _result;
+    List<dynamic> _resulk = await _dk.query(bulk, where: '$_que LIKE ?', whereArgs: ['%$_data%'], orderBy: '${plate} ASC');
+    return []..addAll(_result)..addAll(_resulk);
   }
 
   Future<List<dynamic>> searchNotes() async {

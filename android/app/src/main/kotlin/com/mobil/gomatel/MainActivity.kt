@@ -1,4 +1,4 @@
-package com.monotraine.flutter_mata_elang
+package com.mobil.gomatel
 
 import android.os.Bundle
 
