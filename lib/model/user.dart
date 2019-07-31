@@ -24,13 +24,13 @@ class Register {
   final String nama;
   final String nohp;
   final String alamat;
-  final String fcmid;
   final String agency_id;
+  String fcmid;
   String imei;
 //  dynamic selfie;
 //  dynamic ktp;
 
-  Register({this.date, this.email, this.password, this.noktp, this.fotoktp, this.fotoselfi, this.nama, this.nohp, this.alamat, this.fcmid, this.agency_id});
+  Register({this.date, this.email, this.password, this.noktp, this.fotoktp, this.fotoselfi, this.nama, this.nohp, this.alamat, this.agency_id});
   Map<String, dynamic> toMap() {
     Map<String, dynamic> _map = new Map<String, dynamic>();
 

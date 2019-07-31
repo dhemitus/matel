@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -65,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
       nama: _nama,
       alamat: _alamat,
       agency_id: _agency,
-      fcmid: _fcmid,
+//      fcmid: _fcmid,
       fotoktp: _fotoktp,
       fotoselfi: _fotoselfi
     );

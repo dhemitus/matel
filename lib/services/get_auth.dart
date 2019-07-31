@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:imei_plugin/imei_plugin.dart';
@@ -24,7 +25,13 @@ class GetAuth {
   Future<http.Response> signup (Register val) async {
     const url = 'http://newgomatel.com/apiica/regist/save_user';
     val.imei = await ImeiPlugin.getImei;
+
+    FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+    val.fcmid = await _firebaseMessaging.getToken();
 //    print(val.toMap());
+
+    SharedPreferences _storage = await SharedPreferences.getInstance();
+    _storage.setString('token', val.fcmid);
 
     http.Response response = await http.post(url, body: val.toMap());
     print('Response status: ${response.statusCode}');
@@ -54,6 +61,22 @@ class GetAuth {
     try {
       SharedPreferences _storage = await SharedPreferences.getInstance();
       return _storage.getStringList('logs') ?? null;
+
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<String> getToken() async {
+    FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+    String _token = await _firebaseMessaging.getToken();
+
+    SharedPreferences _storage = await SharedPreferences.getInstance();
+    _storage.setString('token', _token);
+
+    try {
+      SharedPreferences _storage = await SharedPreferences.getInstance();
+      return _storage.getString('token') ?? null;
 
     } catch (e) {
       return null;
